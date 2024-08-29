@@ -1,38 +1,310 @@
-.App {
-  text-align: center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html,
+body {
+    height: 100vh;
+    font-family: "Montserrat", sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.gis-wrapper {
+    height: 100%;
+    display: flex;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+/* Toolbar */
+.gis-wrapper .toolbar-wrapper {
+    background: #2E2E2E;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.gis-wrapper .toolbar-wrapper svg {
+    height: 20px;
+    padding: 0;
+    margin: 0;
+    width: auto;
+    cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Layer Panel */
+.gis-wrapper .layer-panel-wrapper {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* transition: all 0.3s ease; */
+    overflow: hidden;
+}
+
+.gis-wrapper .layer-panel-wrapper.active-panel{
+    width: 0;
+    /* transition: all 0.3s ease; */
+    overflow: hidden;
+}
+
+.gis-wrapper .layer-panel-wrapper .header,
+.gis-wrapper .layer-panel-wrapper .search-wrap {
+    padding: 15px 10px;
+    background-color: #477CC6;
+    border-bottom: 1px solid #fff;
+}
+
+.gis-wrapper .layer-panel-wrapper .header>span.header-logo {
+    background-color: #fff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.gis-wrapper .layer-panel-wrapper .header>span.header-logo span.gis {
+    font-size: 20px;
+    color: #477cc6;
+    font-weight: 800;
+}
+
+.gis-wrapper .layer-panel-wrapper .search-wrap>input[type="text"] {
+    /* background-image: url(./assets/search.svg); */
+    background-repeat: no-repeat;
+    background-position: 170px;
+    background-size: 16px;
+    padding: 2px -1px;
+    border: 0;
+    /* height: 26px; */
+    border-radius: 4px;
+    padding: 8px 15px;
+}
+
+.gis-wrapper .layer-panel-wrapper .layer-panel {
+    padding: 0 10px;
+    background-color: #F7FBFF;
+    flex: 1;
+}
+
+.gis-wrapper .layer-panel-wrapper .layer-panel h6 {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #878585;
+}
+
+.gis-wrapper .layer-panel-wrapper .layer-panel p {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.gis-wrapper .layer-panel-wrapper .layer-panel p.active-panel {
+    margin-top: 10px;
+}
+
+.gis-wrapper .layer-panel-wrapper .cards {
+    background-color: #fff;
+    margin-top: 10px;
+    padding: 10px 8px;
+    border-radius: 4px;
+    border: 1px solid #E4E4E4;
+}
+
+.gis-wrapper .layer-panel-wrapper .cards .card-header {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-between;
+}
+
+.gis-wrapper .layer-panel-wrapper .cards .card-header p.card-header-name {
+    color: #8D8D8D;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+}
+
+.gis-wrapper .layer-panel-wrapper .cards .card-header p.card-header-name>svg {
+    height: 15px;
+    width: auto;
+}
+
+.gis-wrapper .layer-panel-wrapper .cards .card-header p.card-header-name>svg path {
+    fill: #9F9F9F;
+}
+
+.gis-wrapper .layer-panel-wrapper .cards .card-header .card-tools {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.gis-wrapper .layer-panel-wrapper .cards .card-header .card-tools svg {
+    height: 15px;
+    width: auto;
+    cursor: pointer;
+}
+
+.gis-wrapper .layer-panel-wrapper .cards .card-header .card-tools svg.close {
+    height: 12px !important;
+}
+
+.gis-wrapper .layer-panel-wrapper .cards .card-header .card-tools svg path {
+    fill: #B0AFAF;
+}
+
+.cards .card-body p span.color-box {
+    width: 10px;
+    display: inline-block;
+    height: 10px;
+    border-radius: 3px;
+}
+
+.cards .card-body>p {
+    display: flex;
+    align-items: center;
+    font-size: 12px !important;
+    color: #959595;
+    gap: 5px;
+    font-weight: 500 !important;
+}
+
+.cards .card-body p:nth-child(1) span.color-box {
+    background-color: red;
+}
+
+.cards .card-body p:nth-child(2) span.color-box {
+    background-color: #000;
+}
+
+.cards .card-body {
+    margin: 8px 0px 20px 10px;
+}
+
+.map-wrapper button.left-menu-toggle {
+    position: absolute;
+    top: 50%;
+    left: -7px;
+    padding: 20px 2px;
+    z-index: 99;
+    cursor: pointer;
+}
+
+
+/* Map Container */
+.map-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+.map-wrapper nav .map-toolbar ul {
+    display: flex;
+    list-style-type: none;
+}
+
+.map-wrapper nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 5px;
+    background-color: #689AE0;
+    width: 100%;
+}
+
+.map-wrapper nav .dropdown-menu {
+    display: flex;
+    gap: 0px;
+}
+
+.map-wrapper nav .map-toolbar ul li {
+    padding: 6px 8px;
+    border: 1px solid #000;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.map-wrapper nav .map-toolbar ul li>svg {
+    height: 18px;
+    width: auto;
+}
+
+.dropdown-menu .dropdown-container .group-label img.arrowhead.plus-image,
+.dropdown-menu .dropdown-container .subContent .sub-wrapper img.arrowhead.plus-image,
+.dropdown-menu button.dropdown-button svg.arrowhead {
+    height: 16px;
+}
+
+.dropdown-menu button.dropdown-button {
+    display: flex;
+    width: auto;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px;
+    text-wrap: nowrap;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dropdown-menu .dropdown-container {
+    position: absolute;
+    background-color: #fff;
+    padding: 4px 10px;
+    font-size: 12px;
+    top: 50px;
+    border-radius: 4px;
+    box-shadow: 0 0 4px grey;
+    max-width: 240px;
+    overflow: hidden;
+    z-index: 99;
+}
+
+.dropdown-container .group-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.dropdown-container .group-label:not(:last-child),
+.dropdown-container .subContent .sub-wrapper:not(:last-child) {
+    margin-bottom: 8px;
+}
+
+.subContent.dropdown-subcontainer.active {
+    margin-left: 16px;
+    margin-bottom: 10px;
+    flex-direction: column;
+    display: flex !important;
+}
+
+.dropdown-container .subContent .sub-wrapper {
+    flex: 1 1 50%;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.dropdown-container .subContent .sub-wrapper .option-list.active {
+    flex: 1 1 100%;
+    display: flex !important;
+    flex-direction: column;
+    margin-left: 22px;
+    gap: 5px;
+}
+
+.dropdown-container .subContent .sub-wrapper .option-list.active label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.ol-map-wrapper{
+    height: calc(100vh - 57px);
 }
