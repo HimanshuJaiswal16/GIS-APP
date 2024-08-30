@@ -308,3 +308,81 @@ body {
 .ol-map-wrapper{
     height: calc(100vh - 57px);
 }
+
+
+.dropdown-wrapper {
+    display: flex;
+    gap: 2px;
+}
+
+.dropdown-wrapper .dropdown {
+    height: fit-content;
+    position: relative;
+}
+
+.dropdown-wrapper .dropdown>button {
+    height: 100%;
+    background-color: #efefef;
+    border: 0;
+    padding: 10px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 2px;
+}
+
+.dropdown-wrapper .dropdown .dropdown-content {
+    position: absolute;
+    box-shadow: 0px 0px 4px #868282;
+    background-color: #fff;
+    top: 42px;
+    text-wrap: nowrap;
+    left: 0;
+    padding: 6px;
+
+}
+
+.dropdown-wrapper .dropdown .dropdown-content ul {
+    list-style: none;
+}
+
+.dropdown-wrapper .dropdown .dropdown-content ul.sub-dropdown {
+    margin-left: 12px;
+}
+
+.dropdown-wrapper .dropdown .dropdown-content ul.item-list {
+    margin-left: 20px;
+    font-size: 14px;
+    
+}
+
+.dropdown-wrapper .dropdown .dropdown-content ul.item-list>li{
+    margin-bottom: 6px;
+}
+
+.icon {
+    margin-left: 10px;
+    font-size: 16px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.icon.closed {
+    transform: rotate(0deg);
+}
+
+.icon.open {
+    transform: rotate(180deg);
+}
+
+ul.item-list>li>label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dropdown-content button {
+    background-color: transparent;
+    border: 0;
+    padding: 5px;
+}

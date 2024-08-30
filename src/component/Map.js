@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import Dropdown from '../component/Dropdown'
 
 function Map() {
-  let layerPanel = document.querySelector('.layer-panel-wrapper');
+  // let layerPanel = document.querySelector('.layer-panel-wrapper');
 
 
   return (
@@ -9,12 +10,13 @@ function Map() {
       {/* <button className="left-menu-toggle" onClick={toggle}>&gt;&gt;</button> */}
       <nav>
         <div className="dropdown-menu">
-          <div id="feature-dropdown"></div>
+          {/* <div id="feature-dropdown"></div>
           <div id="topographical-dropdown"></div>
           <div id="geological-dropdown"></div>
           <div id="meterological-dropdown"></div>
           <div id="manMade-dropdown"></div>
-          <div id="indices-dropdown"></div>
+          <div id="indices-dropdown"></div> */}
+          <Dropdown/>
         </div>
         <div className="map-toolbar">
           <ul>
